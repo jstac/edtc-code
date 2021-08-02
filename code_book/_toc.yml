@@ -1,0 +1,7 @@
+format: jb-book
+root: intro
+chapters:
+- file: ch1
+- file: ch2
+- file: ch3
+- file: ch4

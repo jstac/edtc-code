@@ -1,0 +1,39 @@
+print("foo")
+
+import numpy as np
+from matplotlib.pyplot import plt
+
+xmin, xmax = -10.0, 10.0
+ymin, ymax = -5.0,  5.0
+
+ax.set_xlim(xmin, xmax)
+ax.set_ylim(ymin, ymax)
+
+A1 = np.asarray([[0.58, -0.6],
+                 [0.65, 0.3]])
+
+def f(x, y): A1 @ (x, y)
+
+def draw_arrow(x, y, ax):
+    eps = 0.0001
+    v1, v2 = f(x, y)
+    nrm = np.sqrt(v1**2 + v2**2)
+    scale = eps / nrm
+    ax.arrow(x, y, scale * v1, scale * v2,
+            antialiased=True, 
+            alpha=0.8,
+            head_length=0.025*(xmax - xmin), 
+            head_width=0.012*(xmax - xmin),
+            fill=False)
+
+xgrid = np.linspace(xmin * 1.1, xmax * 0.95, 12)
+ygrid = np.linspace(ymin * 1.1, ymax * 0.95, 12)
+
+fig, ax = plt.subplots()
+
+for x in xgrid:
+    for y in ygrid:
+        draw_arrow(x, y, ax)
+
+plt.show()
+

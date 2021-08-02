@@ -1,0 +1,32 @@
+# Book settings
+title: Economic Dynamics Python Code
+author: John Stachurski
+# logo: logo.png
+
+sphinx:
+    config:
+        mathjax_config:
+            TeX:
+                Macros:
+                    "Exp" : ["\\operatorname{Exp}"]
+                    "Binomial" : ["\\operatorname{Binomial}"]
+                    "Poisson" : ["\\operatorname{Poisson}"]
+                    "BB" : ["\\mathbb{B}"]
+                    "EE" : ["\\mathbb{E}"]
+                    "PP" : ["\\mathbb{P}"]
+                    "RR" : ["\\mathbb{R}"]
+                    "NN" : ["\\mathbb{N}"]
+                    "ZZ" : ["\\mathbb{Z}"]
+                    "dD" : ["\\mathcal{D}"]
+                    "fF" : ["\\mathcal{F}"]
+                    "lL" : ["\\mathcal{L}"]
+                    "linop" : ["\\mathcal{L}(\\mathbb{B})"]
+                    "linopell" : ["\\mathcal{L}(\\ell_1)"]
+
+execute:
+    execute_notebooks: cache
+
+latex:
+    latex_engine: "xelatex"
+    latex_documents:
+        targetname: book.tex
