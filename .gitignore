@@ -1,2 +1,4 @@
 .ipynb_checkpoints
+/_build
 */.ipynb_checkpoints/*
+*/_build/*

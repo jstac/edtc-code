@@ -1,39 +1,499 @@
-print("foo")
-
 import numpy as np
-from matplotlib.pyplot import plt
+import matplotlib.pyplot as plt
+from numba import jit
+from quantecon import MarkovChain
 
-xmin, xmax = -10.0, 10.0
-ymin, ymax = -5.0,  5.0
-
-ax.set_xlim(xmin, xmax)
-ax.set_ylim(ymin, ymax)
-
-A1 = np.asarray([[0.58, -0.6],
-                 [0.65, 0.3]])
-
-def f(x, y): A1 @ (x, y)
-
-def draw_arrow(x, y, ax):
-    eps = 0.0001
-    v1, v2 = f(x, y)
+def draw_arrow(x, y, xp, yp, ax):
+    """
+    Draw an arrow from (x, y) to (xp, yp).
+    """
+    v1, v2 = xp - x, yp - y
+    eps = 1.0
     nrm = np.sqrt(v1**2 + v2**2)
-    scale = eps / nrm
+    scale = 1.0
     ax.arrow(x, y, scale * v1, scale * v2,
             antialiased=True, 
-            alpha=0.8,
+            alpha=0.5,
             head_length=0.025*(xmax - xmin), 
             head_width=0.012*(xmax - xmin),
             fill=False)
 
-xgrid = np.linspace(xmin * 1.1, xmax * 0.95, 12)
-ygrid = np.linspace(ymin * 1.1, ymax * 0.95, 12)
+xmin, xmax = -10.0, 10.0
+ymin, ymax = -5.0,  5.0
+
+A1 = np.asarray([[0.55, -0.6],
+                 [0.5, 0.4]])
+
+def f(x, y): 
+    return  A1 @ (x, y)
+
+xgrid = np.linspace(xmin * 0.95, xmax * 0.95, 10)
+ygrid = np.linspace(ymin * 0.95, ymax * 0.95, 10)
 
 fig, ax = plt.subplots()
 
+#ax.set_xlim(xmin, xmax)
+#ax.set_ylim(ymin, ymax)
+
+ax.set_xticks((0,))
+ax.set_yticks((0,))
+ax.grid()
+
 for x in xgrid:
     for y in ygrid:
-        draw_arrow(x, y, ax)
+        xp, yp = f(x, y)
+        draw_arrow(x, y, xp, yp, ax)
+
+#plt.savefig("sdsdiagram.pdf")  # Uncomment to save figure
+plt.show()
+
+
+def draw_trajectory(x, y, ax, n=10):
+    """
+    Draw the trajectory of length n starting from (x, y).
+    """
+    for i in range(n):
+        x_new, y_new = f(x, y)
+        draw_arrow(x, y, x_new, y_new, ax)
+        x, y = x_new, y_new
+        
+xgrid = np.linspace(xmin * 0.95, xmax * 0.95, 3)
+ygrid = np.linspace(ymin * 0.95, ymax * 0.95, 3)
+
+fig, ax = plt.subplots()
+
+#ax.set_xlim(xmin, xmax)
+#ax.set_ylim(ymin, ymax)
+
+ax.set_xticks((0,))
+ax.set_yticks((0,))
+ax.grid()
+
+for x in xgrid:
+    for y in ygrid:
+        draw_trajectory(x, y, ax)
+
+#plt.savefig("sdsstable.pdf")  # Uncomment to save figure
+plt.show()
+
+class DS:
+
+    def __init__(self, h=None, x=None):
+        """Parameters: h is a function and x is an 
+        element of S representing the current state."""
+        self.h, self.x = h, x
+
+    def update(self):
+        "Update the state of the system by applying h."
+        self.x = self.h(self.x)
+
+    def trajectory(self, n):
+        """Generate a trajectory of length n, starting 
+        at the current state."""
+        traj = []
+        for i in range(n):
+            traj.append(self.x)
+            self.update()
+        return traj
+
+
+q = DS(h=lambda x: 4 * x * (1 - x), x=0.11)
+t = q.trajectory(200)
+
+fig, ax = plt.subplots()
+ax.plot(t)
 
 plt.show()
 
+
+q.x = 0.11
+t = q.trajectory(5000)
+
+fig, ax = plt.subplots()
+ax.hist(t, bins=40, alpha=0.5, edgecolor='k')
+
+plt.show()
+
+
+q.x = 0.65
+t = q.trajectory(5000)
+
+fig, ax = plt.subplots()
+ax.hist(t, bins=40, alpha=0.5, edgecolor='k')
+
+plt.show()
+
+
+xgrid = np.linspace(0, 1, 100)
+
+h = lambda x, r: r * x * (1 - x)
+
+fig, ax = plt.subplots()
+
+ax.plot(xgrid, xgrid, '-', color='grey')
+
+r = 0
+step = 0.3
+
+while r <= 4:
+    y = [h(x, r) for x in xgrid]
+    ax.plot(xgrid, y)
+    r = r + step
+
+plt.show()
+
+
+q = DS(h=None, x=0.1)
+
+fig, ax = plt.subplots()
+
+r = 2.5
+while r < 4:
+    q.h = lambda x: r * x * (1 - x)
+    t = q.trajectory(1000)[950:]
+    ax.plot([r] * len(t), t, 'k.', ms=0.4)
+    r = r + 0.005
+
+ax.set_xlabel(r'$r$', fontsize=16)
+plt.show()
+
+
+pH = ((0.971, 0.029, 0.000),       # Hamilton's kernel
+      (0.145, 0.778, 0.077),
+      (0.000, 0.508, 0.492))
+
+pH = np.array(pH)                  # Convert to numpy array
+
+S = np.array((0, 1, 2))
+
+@jit
+def tau(z, S, phi):
+    i = np.searchsorted(np.cumsum(phi), z)
+    return S[i]
+
+def trajectory(x, p, S, n=100):
+
+        X = np.empty(n, dtype=int)
+        X[0] = x
+        for t in range(n-1):
+            W = np.random.rand()
+            X[t+1] = tau(W, S, p[X[t], :])
+        return X
+
+fig, ax = plt.subplots()
+
+X = trajectory(0, pH, S, n=500)
+
+ax.plot(X)
+plt.show()
+
+
+mc = MarkovChain(pH, state_values=S)
+X = mc.simulate(init=0, ts_length=500)
+
+fig, ax = plt.subplots()
+ax.plot(X)
+plt.show()
+
+@jit
+def compute_marginal(n=100_000, T=10):
+    X_vals = np.empty(n)
+
+    for i in range(n):
+        X = 2                   # start in state SR
+        for t in range(T):
+            W = np.random.rand()
+            X = tau(W, S, pH[X, :])
+        X_vals[i] = X
+    return np.mean(X_vals == 0)
+
+compute_marginal()
+
+@jit
+def compute_marginal_2(n=100_000, T=10):
+    counter = 0
+
+    for i in range(n):
+        X = 2                   # start in state SR
+        for t in range(T):
+            W = np.random.rand()
+            X = tau(W, S, pH[X, :])
+        if X == 0:
+            counter += 1
+
+    return counter / n
+
+compute_marginal_2()
+
+T = 5
+psi = (1, 0, 0)         # start in NG
+h = (1000, 0, -1000)    # profits
+
+for t in range(T):
+    psi = psi @ pH
+
+print(psi @ h)
+
+psi = (0, 0, 1) 
+
+for t in range(T):
+    psi = psi @ pH
+
+print(psi @ h)
+
+T = 1000
+
+for i in (0, 1, 2):
+    psi = np.zeros(3)
+    psi[i] = 1
+    for t in range(T):
+        psi = psi @ pH
+    print(f"Profits in state {i} at date {T} equals {psi @ h}")
+
+T = 5
+psi = (0.2, 0.2, 0.6) 
+
+for t in range(T):
+    psi = psi @ pH
+
+print(psi @ h)
+
+def path_prob(p, psi, X):   # X gives a time path
+    prob = psi[X[0]]
+    for t in range(len(X)-1):
+        prob = prob * p[X[t], X[t+1]]
+    return prob
+
+psi = np.array((0.2, 0.2, 0.6))
+prob = path_prob(pH, psi, (0, 1, 0))
+
+print(prob)
+
+counter = 0
+recession_states = 1, 2
+for x0 in recession_states:
+    for x1 in recession_states:
+        for x2 in recession_states:
+            path = x0, x1, x2
+            counter += path_prob(pH, psi, path)
+
+print(counter)
+
+counter = 0
+m  = 10_000
+mc = MarkovChain(pH)
+
+for i in range(m):
+    x0 = tau(np.random.rand(), S, psi)
+    X = mc.simulate(init=x0, ts_length=3)
+    if 0 not in X:
+        counter += 1
+
+print(counter / m)
+
+max_T = 12
+T_vals = range(max_T)
+profits = []
+r = 0.05
+rho = 1 / (1+r)
+
+psi = (0.2, 0.2, 0.6) 
+h = (1000, 0, -1000)    
+current_profits = np.inner(psi, h)
+discount = rho
+Q = np.identity(3)
+
+for t in T_vals:
+    Q = Q @ pH
+    discount = discount * rho
+    current_profits += discount * np.inner(psi, Q @ h)
+    profits.append(current_profits)
+
+fig, ax = plt.subplots()
+ax.plot(profits, label='profits')
+ax.plot(np.zeros(max_T), '--', label='break even')
+ax.set_xlabel('time')
+ax.legend()
+
+plt.show()
+
+
+p_Q = ((0.97 , 0.03 , 0.00 , 0.00 , 0.00),
+       (0.05 , 0.92 , 0.03 , 0.00 , 0.00),
+       (0.00 , 0.04 , 0.92 , 0.04 , 0.00),
+       (0.00 , 0.00 , 0.04 , 0.94 , 0.02),
+       (0.00 , 0.00 , 0.00 , 0.01 , 0.99))
+
+p_Q = np.array(p_Q)
+states = 0, 1, 2, 3, 4
+dates = 10, 60, 160
+initial_states = 0, 4
+
+rows, cols = 2, 3
+fig, axes = plt.subplots(rows, cols)
+
+for row, init in enumerate(initial_states):
+    psi = np.zeros(5)
+    psi[init] = 1
+    for col, d in enumerate(dates):
+        ax = axes[row, col]
+        ax.bar(states, 
+                psi @ np.linalg.matrix_power(p_Q, d), 
+                alpha=0.5,
+                edgecolor='k')
+        ax.set_title(f"$X_0 = {init}, t = {d}$")
+        ax.set_ylabel("prob")
+        ax.set_xlabel("state")
+
+plt.tight_layout()
+
+#plt.savefig("dds2.pdf")
+plt.show()
+
+dates = 160, 500, 1000
+
+fig, axes = plt.subplots(rows, cols)
+
+for row, init in enumerate(initial_states):
+    psi = np.zeros(5)
+    psi[init] = 1
+    for col, d in enumerate(dates):
+        ax = axes[row, col]
+        ax.bar(states, 
+                psi @ np.linalg.matrix_power(p_Q, d), 
+                alpha=0.5,
+                edgecolor='k')
+        ax.set_title(f"$X_0 = {init}, t = {d}$")
+        ax.set_ylabel("prob")
+        ax.set_xlabel("state")
+
+plt.tight_layout()
+
+#plt.savefig("dds3.pdf")
+plt.show()
+
+from numpy.linalg import solve
+
+def compute_stationary(p):
+    N = p.shape[0]
+    I = np.identity(N)
+    O = np.ones((N, N))
+    A = I - p + O
+    return solve(A.T, np.ones((N, 1))).flatten()
+
+
+psi_star = compute_stationary(p_Q)
+
+fig, ax = plt.subplots()
+ax.bar(states, psi_star, alpha=0.5, edgecolor='k')
+
+plt.show()
+
+psi_star = compute_stationary(pH)  
+print(np.inner(psi_star, h))
+
+pT = np.linalg.matrix_power(pH, 1000)
+psi_vecs = (1, 0, 0), (0, 1, 0), (0, 0, 1)
+
+for psi in psi_vecs:
+    print(np.inner(psi, pT @ h))
+
+@jit
+def compute_return_time(x, p, max_iter=100_000):
+    X = x
+    t = 0
+    while t < max_iter:
+        W = np.random.rand()
+        X = tau(W, S, pH[X, :])
+        t += 1
+        if X == x:
+            return t
+
+@jit
+def compute_mean_return_time(x, p, n=100_000):
+    counter = 0
+    for i in range(n):
+        counter += compute_return_time(x, p)
+    return counter / n
+
+
+[compute_mean_return_time(i, pH) for i in range(3)]
+
+
+psi_star = compute_stationary(pH)
+1/ psi_star
+
+
+def b(d):
+    " Returns probability that demand = d."
+    return (d >= 0) * (1/2)**(d + 1)
+
+def h(x, q, Q):
+    return  x + (Q - x) * (x <= q)
+
+def build_p(q=2, Q=5): 
+    p = np.empty((Q+1, Q+1))
+    for x in range(Q+1):
+        for y in range(Q+1):
+            if y == 0:
+                p[x,y] = (1/2)**h(x, q, Q)    # prob D >= h(x, q)
+            else:
+                p[x,y] = b(h(x, q, Q) - y)    # prob h(x, q) - D = y
+
+    return p
+
+
+p = build_p()
+compute_stationary(p)
+
+
+
+Q = 20   # inventory upper bound
+C = 0.1  # cost of restocking
+
+# profit given state x, demand d, policy q
+def profit(x, d, q):
+    stock = h(x, q, Q)
+    revenue = stock if stock < d else d
+    cost = C * (x <= q)
+    return revenue - cost
+
+# expected profit given x and policy q
+def g(x, q):
+    counter = 0
+    for d in range(1000):
+        counter += profit(x, d, q) * b(d)
+    return counter
+
+def profit_at_stationary(q):
+    p = build_p(q=q, Q=Q)
+    stationary = compute_stationary(p)
+    counter = 0
+    for x in range(Q+1):
+        counter += g(x, q) * stationary[x]
+    return counter
+     
+def compute_optimal_policy():
+    running_max = -np.inf
+    for q in range(Q+1):
+        counter = profit_at_stationary(q)
+        if counter > running_max:
+            running_max = counter
+            argmax = q
+    return(argmax)
+
+compute_optimal_policy()
+
+psi_star = compute_stationary(pH)  
+psi_star[0]
+
+T = 1_000_000
+mc = MarkovChain(pH)
+X = mc.simulate(init=0, ts_length=T)
+np.mean(X == 0)
+
+psi_star = compute_stationary(pH)  
+print(np.inner(psi_star, h))
+
+y = [h[x] for x in X]
+np.mean(y)

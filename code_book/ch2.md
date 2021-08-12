@@ -24,7 +24,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 ```
 
-### Bisection
+## Bisection
 
 +++
 
@@ -59,21 +59,21 @@ if i > M:
     print("Failed to converge.")
 ```
 
-### User Defined Functions
+## User Defined Functions
 
 +++
 
 Here's the basic implementation of the function $\tau$.
 
 ```{code-cell} ipython3
-def τ(z, S, ϕ):
+def tau(z, S, phi):
     """
-    Evaluates the function τ(z) given data S, ϕ, where
-    S and ϕ are assumed to be arrays.
+    Evaluates the function tau(z) given data S, phi, where
+    S and phi are assumed to be arrays.
     """
     a = 0
     for i, x in enumerate(S):
-        b = a + ϕ[i]
+        b = a + phi[i]
         if a < z <= b:
             return x
         a = b
@@ -82,34 +82,34 @@ def τ(z, S, ϕ):
 Here's a more efficient implementation.
 
 ```{code-cell} ipython3
-def τ(z, S, ϕ):
-    i = np.searchsorted(np.cumsum(ϕ), z)
+def tau(z, S, phi):
+    i = np.searchsorted(np.cumsum(phi), z)
     return S[i]
 ```
 
 And here's a closure that generates the function $\tau$.
 
 ```{code-cell} ipython3
-def τ_factory(S, ϕ):
-    Φ = np.cumsum(ϕ)
+def tau_factory(S, phi):
+    Φ = np.cumsum(phi)
     
-    def τ(z):
+    def tau(z):
         i = np.searchsorted(Φ, z)
         return S[i]
     
-    return τ
+    return tau
 ```
 
 We generate a function $\tau$ that acts on $z$ alone by calling the function factory:
 
 ```{code-cell} ipython3
-ϕ = 0.2, 0.5, 0.3
+phi = 0.2, 0.5, 0.3
 S = 0, 1, 2
-τ = τ_factory(S, ϕ)
+tau = tau_factory(S, phi)
 ```
 
 ```{code-cell} ipython3
-τ(0.1)  # Should be 0
+tau(0.1)  # Should be 0
 ```
 
 All of these functions work as expected.  To illustrate, here $\tau$ is used to generate draws from a given distribution $\phi$.  
@@ -121,7 +121,7 @@ size = 100_000
 draws = np.empty(size)
 for j in range(size):
     W = np.random.uniform()
-    draws[j] = τ(W)
+    draws[j] = tau(W)
     
 # Compute fraction of draws with each possible value
 frequency = [np.mean(draws==j) for j in S]
@@ -139,14 +139,14 @@ ax.bar(S, frequency,
        alpha=0.25, 
        label="histogram")
 
-ax.stem(S, ϕ, label='$\\phi$')
+ax.stem(S, phi, label='$\\phi$')
 
 ax.legend()
 
 plt.show()
 ```
 
-### Object Oriented Programming
+## Object Oriented Programming
 
 +++
 
@@ -155,28 +155,26 @@ Here's a class that implements the function $\tau$ as a method, as well as a met
 ```{code-cell} ipython3
 class Tau:
     
-    def __init__(self, S, ϕ):
+    def __init__(self, S, phi):
         self.S = S
-        self.Φ = np.cumsum(ϕ)
+        self.Φ = np.cumsum(phi)
     
-    def τ(self, z):
+    def tau(self, z):
         i = np.searchsorted(self.Φ, z)
         return self.S[i]
     
     def draw(self):
         W = np.random.uniform()
-        return self.τ(W)
+        return self.tau(W)
 ```
 
 ```{code-cell} ipython3
-τ = Tau(S, ϕ)
+tau = Tau(S, phi)
 ```
 
 ```{code-cell} ipython3
 for i in range(5):
-    print(τ.draw())
+    print(tau.draw())
 ```
 
-```{code-cell} ipython3
 
-```
