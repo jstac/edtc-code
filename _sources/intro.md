@@ -1,7 +1,7 @@
 Economic Dynamics Code Book
 ===========================
 
-**AUTHOR**: [JOHN STACHURSKI](https://johnstachurski.net/)
+**AUTHOR**: [John Stachurski](https://johnstachurski.net/)
 
 
 This Jupyter book provides code to accompany the second edition of the
