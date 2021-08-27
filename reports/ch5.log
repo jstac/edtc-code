@@ -1,0 +1,154 @@
+Traceback (most recent call last):
+  File "/home/john/anaconda3/lib/python3.8/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
+    executenb(
+  File "/home/john/anaconda3/lib/python3.8/site-packages/nbclient/client.py", line 1112, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/home/john/anaconda3/lib/python3.8/site-packages/nbclient/util.py", line 74, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/home/john/anaconda3/lib/python3.8/site-packages/nbclient/util.py", line 53, in just_run
+    return loop.run_until_complete(coro)
+  File "/home/john/anaconda3/lib/python3.8/asyncio/base_events.py", line 616, in run_until_complete
+    return future.result()
+  File "/home/john/anaconda3/lib/python3.8/site-packages/nbclient/client.py", line 553, in async_execute
+    await self.async_execute_cell(
+  File "/home/john/anaconda3/lib/python3.8/site-packages/nbclient/client.py", line 857, in async_execute_cell
+    self._check_raise_for_error(cell, exec_reply)
+  File "/home/john/anaconda3/lib/python3.8/site-packages/nbclient/client.py", line 760, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+p_sigma = np.empty((len(S), len(S)))
+
+for x in S:
+    for y in S:
+        p_sigma[x, y] = phi(y - sigma_star[x])
+
+dobrushin(p_sigma)
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mCompilerError[0m                             Traceback (most recent call last)
+[0;32m<ipython-input-10-f0f2c2b10127>[0m in [0;36m<module>[0;34m[0m
+[1;32m      5[0m         [0mp_sigma[0m[0;34m[[0m[0mx[0m[0;34m,[0m [0my[0m[0;34m][0m [0;34m=[0m [0mphi[0m[0;34m([0m[0my[0m [0;34m-[0m [0msigma_star[0m[0;34m[[0m[0mx[0m[0;34m][0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      6[0m [0;34m[0m[0m
+[0;32m----> 7[0;31m [0mdobrushin[0m[0;34m([0m[0mp_sigma[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m
+[0;32m~/anaconda3/lib/python3.8/site-packages/numba/core/dispatcher.py[0m in [0;36m_compile_for_args[0;34m(self, *args, **kws)[0m
+[1;32m    437[0m                     [0me[0m[0;34m.[0m[0mpatch_message[0m[0;34m([0m[0;34m'\n'[0m[0;34m.[0m[0mjoin[0m[0;34m([0m[0;34m([0m[0mstr[0m[0;34m([0m[0me[0m[0;34m)[0m[0;34m.[0m[0mrstrip[0m[0;34m([0m[0;34m)[0m[0;34m,[0m [0mhelp_msg[0m[0;34m)[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    438[0m             [0;31m# ignore the FULL_TRACEBACKS config, this needs reporting![0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 439[0;31m             [0;32mraise[0m [0me[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    440[0m         [0;32mfinally[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    441[0m             [0mself[0m[0;34m.[0m[0m_types_active_call[0m [0;34m=[0m [0;34m[[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m~/anaconda3/lib/python3.8/site-packages/numba/core/dispatcher.py[0m in [0;36m_compile_for_args[0;34m(self, *args, **kws)[0m
+[1;32m    370[0m         [0mreturn_val[0m [0;34m=[0m [0;32mNone[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    371[0m         [0;32mtry[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 372[0;31m             [0mreturn_val[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0mcompile[0m[0;34m([0m[0mtuple[0m[0;34m([0m[0margtypes[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    373[0m         [0;32mexcept[0m [0merrors[0m[0;34m.[0m[0mForceLiteralArg[0m [0;32mas[0m [0me[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    374[0m             [0;31m# Received request for compiler re-entry with the list of arguments[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m~/anaconda3/lib/python3.8/site-packages/numba/core/dispatcher.py[0m in [0;36mcompile[0;34m(self, sig)[0m
+[1;32m   1107[0m                 )
+[1;32m   1108[0m                 [0;32mwith[0m [0mev[0m[0;34m.[0m[0mtrigger_event[0m[0;34m([0m[0;34m"numba:compile"[0m[0;34m,[0m [0mdata[0m[0;34m=[0m[0mev_details[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 1109[0;31m                     cres = compiler.compile_ir(typingctx=self.typingctx,
+[0m[1;32m   1110[0m                                             [0mtargetctx[0m[0;34m=[0m[0mself[0m[0;34m.[0m[0mtargetctx[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1111[0m                                             [0mfunc_ir[0m[0;34m=[0m[0mcloned_func_ir[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m~/anaconda3/lib/python3.8/site-packages/numba/core/compiler.py[0m in [0;36mcompile_ir[0;34m(typingctx, targetctx, func_ir, args, return_type, flags, locals, lifted, lifted_from, is_lifted_loop, library, pipeline_class)[0m
+[1;32m    642[0m [0;34m[0m[0m
+[1;32m    643[0m         [0;31m# compile with rewrites off, IR shouldn't be mutated irreparably[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 644[0;31m         [0mnorw_cres[0m [0;34m=[0m [0mcompile_local[0m[0;34m([0m[0mfunc_ir[0m[0;34m.[0m[0mcopy[0m[0;34m([0m[0;34m)[0m[0;34m,[0m [0mnorw_flags[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    645[0m [0;34m[0m[0m
+[1;32m    646[0m         [0;31m# try and compile with rewrites on if no_rewrites was not set in the[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m~/anaconda3/lib/python3.8/site-packages/numba/core/compiler.py[0m in [0;36mcompile_local[0;34m(the_ir, the_flags)[0m
+[1;32m    638[0m             pipeline = pipeline_class(typingctx, targetctx, library,
+[1;32m    639[0m                                       args, return_type, the_flags, locals)
+[0;32m--> 640[0;31m             return pipeline.compile_ir(func_ir=the_ir, lifted=lifted,
+[0m[1;32m    641[0m                                        lifted_from=lifted_from)
+[1;32m    642[0m [0;34m[0m[0m
+
+[0;32m~/anaconda3/lib/python3.8/site-packages/numba/core/compiler.py[0m in [0;36mcompile_ir[0;34m(self, func_ir, lifted, lifted_from)[0m
+[1;32m    361[0m [0;34m[0m[0m
+[1;32m    362[0m         [0mFixupArgs[0m[0;34m([0m[0;34m)[0m[0;34m.[0m[0mrun_pass[0m[0;34m([0m[0mself[0m[0;34m.[0m[0mstate[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 363[0;31m         [0;32mreturn[0m [0mself[0m[0;34m.[0m[0m_compile_ir[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    364[0m [0;34m[0m[0m
+[1;32m    365[0m     [0;32mdef[0m [0mdefine_pipelines[0m[0;34m([0m[0mself[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m~/anaconda3/lib/python3.8/site-packages/numba/core/compiler.py[0m in [0;36m_compile_ir[0;34m(self)[0m
+[1;32m    420[0m         """
+[1;32m    421[0m         [0;32massert[0m [0mself[0m[0;34m.[0m[0mstate[0m[0;34m.[0m[0mfunc_ir[0m [0;32mis[0m [0;32mnot[0m [0;32mNone[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 422[0;31m         [0;32mreturn[0m [0mself[0m[0;34m.[0m[0m_compile_core[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    423[0m [0;34m[0m[0m
+[1;32m    424[0m [0;34m[0m[0m
+
+[0;32m~/anaconda3/lib/python3.8/site-packages/numba/core/compiler.py[0m in [0;36m_compile_core[0;34m(self)[0m
+[1;32m    393[0m                 [0mself[0m[0;34m.[0m[0mstate[0m[0;34m.[0m[0mstatus[0m[0;34m.[0m[0mfail_reason[0m [0;34m=[0m [0me[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    394[0m                 [0;32mif[0m [0mis_final_pipeline[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 395[0;31m                     [0;32mraise[0m [0me[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    396[0m         [0;32melse[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    397[0m             [0;32mraise[0m [0mCompilerError[0m[0;34m([0m[0;34m"All available pipelines exhausted"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m~/anaconda3/lib/python3.8/site-packages/numba/core/compiler.py[0m in [0;36m_compile_core[0;34m(self)[0m
+[1;32m    384[0m             [0mres[0m [0;34m=[0m [0;32mNone[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    385[0m             [0;32mtry[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 386[0;31m                 [0mpm[0m[0;34m.[0m[0mrun[0m[0;34m([0m[0mself[0m[0;34m.[0m[0mstate[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    387[0m                 [0;32mif[0m [0mself[0m[0;34m.[0m[0mstate[0m[0;34m.[0m[0mcr[0m [0;32mis[0m [0;32mnot[0m [0;32mNone[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    388[0m                     [0;32mbreak[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m~/anaconda3/lib/python3.8/site-packages/numba/core/compiler_machinery.py[0m in [0;36mrun[0;34m(self, state)[0m
+[1;32m    337[0m                     [0;34m([0m[0mself[0m[0;34m.[0m[0mpipeline_name[0m[0;34m,[0m [0mpass_desc[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    338[0m                 [0mpatched_exception[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0m_patch_error[0m[0;34m([0m[0mmsg[0m[0;34m,[0m [0me[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 339[0;31m                 [0;32mraise[0m [0mpatched_exception[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    340[0m [0;34m[0m[0m
+[1;32m    341[0m     [0;32mdef[0m [0mdependency_analysis[0m[0;34m([0m[0mself[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m~/anaconda3/lib/python3.8/site-packages/numba/core/compiler_machinery.py[0m in [0;36mrun[0;34m(self, state)[0m
+[1;32m    328[0m                 [0mpass_inst[0m [0;34m=[0m [0m_pass_registry[0m[0;34m.[0m[0mget[0m[0;34m([0m[0mpss[0m[0;34m)[0m[0;34m.[0m[0mpass_inst[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    329[0m                 [0;32mif[0m [0misinstance[0m[0;34m([0m[0mpass_inst[0m[0;34m,[0m [0mCompilerPass[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 330[0;31m                     [0mself[0m[0;34m.[0m[0m_runPass[0m[0;34m([0m[0midx[0m[0;34m,[0m [0mpass_inst[0m[0;34m,[0m [0mstate[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    331[0m                 [0;32melse[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    332[0m                     [0;32mraise[0m [0mBaseException[0m[0;34m([0m[0;34m"Legacy pass in use"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m~/anaconda3/lib/python3.8/site-packages/numba/core/compiler_lock.py[0m in [0;36m_acquire_compile_lock[0;34m(*args, **kwargs)[0m
+[1;32m     33[0m         [0;32mdef[0m [0m_acquire_compile_lock[0m[0;34m([0m[0;34m*[0m[0margs[0m[0;34m,[0m [0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     34[0m             [0;32mwith[0m [0mself[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 35[0;31m                 [0;32mreturn[0m [0mfunc[0m[0;34m([0m[0;34m*[0m[0margs[0m[0;34m,[0m [0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     36[0m         [0;32mreturn[0m [0m_acquire_compile_lock[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     37[0m [0;34m[0m[0m
+
+[0;32m~/anaconda3/lib/python3.8/site-packages/numba/core/compiler_machinery.py[0m in [0;36m_runPass[0;34m(self, index, pss, internal_state)[0m
+[1;32m    294[0m         [0;31m# emitted ir.Dels.[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    295[0m         [0;32mif[0m [0misinstance[0m[0;34m([0m[0mpss[0m[0;34m,[0m [0mFunctionPass[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 296[0;31m             [0menforce_no_dels[0m[0;34m([0m[0minternal_state[0m[0;34m.[0m[0mfunc_ir[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    297[0m [0;34m[0m[0m
+[1;32m    298[0m         [0;32mif[0m [0mself[0m[0;34m.[0m[0m_ENFORCING[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m~/anaconda3/lib/python3.8/site-packages/numba/core/ir_utils.py[0m in [0;36menforce_no_dels[0;34m(func_ir)[0m
+[1;32m   2164[0m         [0;32mif[0m [0mdels[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   2165[0m             [0mmsg[0m [0;34m=[0m [0;34m"Illegal IR, del found at: %s"[0m [0;34m%[0m [0mdels[0m[0;34m[[0m[0;36m0[0m[0;34m][0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 2166[0;31m             [0;32mraise[0m [0mCompilerError[0m[0;34m([0m[0mmsg[0m[0;34m,[0m [0mloc[0m[0;34m=[0m[0mdels[0m[0;34m[[0m[0;36m0[0m[0;34m][0m[0;34m.[0m[0mloc[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   2167[0m [0;34m[0m[0m
+[1;32m   2168[0m [0;32mdef[0m [0menforce_no_phis[0m[0;34m([0m[0mfunc_ir[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mCompilerError[0m: Failed in object mode pipeline (step: remove phis nodes)
+[1mIllegal IR, del found at: del $54pred
+[1m
+File "<ipython-input-9-0cb43128055e>", line 5:[0m
+[1mdef dobrushin(p):
+    <source elided>
+    for x in S:
+[1m        for xp in S:
+[0m        [1m^[0m[0m
+[0m
+CompilerError: Failed in object mode pipeline (step: remove phis nodes)
+[1mIllegal IR, del found at: del $54pred
+[1m
+File "<ipython-input-9-0cb43128055e>", line 5:[0m
+[1mdef dobrushin(p):
+    <source elided>
+    for x in S:
+[1m        for xp in S:
+[0m        [1m^[0m[0m
+[0m
+

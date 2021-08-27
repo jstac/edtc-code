@@ -1,0 +1,422 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chapter 11 Code &#8212; Economic Dynamics</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"Exp": ["\\operatorname{Exp}"], "Binomial": ["\\operatorname{Binomial}"], "Poisson": ["\\operatorname{Poisson}"], "BB": ["\\mathbb{B}"], "EE": ["\\mathbb{E}"], "PP": ["\\mathbb{P}"], "RR": ["\\mathbb{R}"], "NN": ["\\mathbb{N}"], "ZZ": ["\\mathbb{Z}"], "dD": ["\\mathcal{D}"], "fF": ["\\mathcal{F}"], "lL": ["\\mathcal{L}"], "linop": ["\\mathcal{L}(\\mathbb{B})"], "linopell": ["\\mathcal{L}(\\ell_1)"]}}, "tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Chapter 10 Code" href="ch10.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Economic Dynamics</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Economic Dynamics Code Book
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch1.html">
+   Chapter 1 Code
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch2.html">
+   Chapter 2 Code
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch3.html">
+   Chapter 3 Code
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch4.html">
+   Chapter 4 Code
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch5.html">
+   Chapter 5 Code
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch6.html">
+   Chapter 6 Code
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch7.html">
+   Chapter 7 Code
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch8.html">
+   Chapter 8 Code
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch9.html">
+   Chapter 9 Code
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ch10.html">
+   Chapter 10 Code
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Chapter 11 Code
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="_sources/ch11.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/ch11.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/ch11.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="chapter-11-code">
+<h1>Chapter 11 Code<a class="headerlink" href="#chapter-11-code" title="Permalink to this headline">¶</a></h1>
+<p>We begin with some imports</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">numba</span> <span class="kn">import</span> <span class="n">njit</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we recreate figure 11.3.  Our first step is to set the parameters.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.6</span>
+<span class="n">Q</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">R</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="mf">0.1</span> <span class="c1"># variance</span>
+<span class="n">mu</span> <span class="o">=</span> <span class="o">-</span> <span class="n">sigma</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next we introduce useful functions.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@njit</span>
+<span class="k">def</span> <span class="nf">wage</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">k</span><span class="o">**</span><span class="n">alpha</span><span class="p">)</span> <span class="o">*</span> <span class="n">z</span>
+
+<span class="nd">@njit</span>
+<span class="k">def</span> <span class="nf">theta</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">lda</span><span class="p">):</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">w</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">lda</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">lda</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">w</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+
+<span class="nd">@njit</span>
+<span class="k">def</span> <span class="nf">g</span><span class="p">(</span><span class="n">y</span><span class="p">):</span> 
+    <span class="k">return</span> <span class="p">(</span><span class="n">y</span><span class="o">/</span><span class="n">alpha</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="n">alpha</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span> 
+
+<span class="nd">@njit</span>
+<span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">lda</span><span class="p">):</span>
+    <span class="s2">&quot; Update the state.&quot;</span>
+    <span class="k">return</span> <span class="n">g</span><span class="p">(</span><span class="n">R</span> <span class="o">/</span> <span class="p">(</span><span class="n">Q</span> <span class="o">*</span> <span class="n">theta</span><span class="p">(</span><span class="n">wage</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">z</span><span class="p">),</span> <span class="n">lda</span><span class="p">)))</span>
+
+<span class="nd">@njit</span>
+<span class="k">def</span> <span class="nf">a</span><span class="p">(</span><span class="n">lda</span><span class="p">):</span> 
+    <span class="k">return</span> <span class="n">g</span><span class="p">(</span><span class="n">R</span> <span class="o">/</span> <span class="p">(</span><span class="n">lda</span> <span class="o">*</span> <span class="n">Q</span><span class="p">))</span>
+
+<span class="nd">@njit</span>
+<span class="k">def</span> <span class="nf">generate_ts</span><span class="p">(</span><span class="n">lda</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">1234</span><span class="p">,</span> <span class="n">ts_length</span><span class="o">=</span><span class="mi">10_000</span><span class="p">):</span>
+    <span class="s2">&quot; Generate a time series from the model.&quot;</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+    <span class="n">K</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">ts_length</span><span class="p">)</span>  
+    <span class="k">if</span> <span class="n">init</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">init</span> <span class="o">=</span> <span class="n">a</span><span class="p">(</span><span class="n">lda</span><span class="p">)</span>
+    <span class="n">K</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">init</span>
+    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ts_length</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">mu</span> <span class="o">+</span> <span class="n">sigma</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">())</span>
+        <span class="n">K</span><span class="p">[</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">update</span><span class="p">(</span><span class="n">K</span><span class="p">[</span><span class="n">t</span><span class="p">],</span> <span class="n">z</span><span class="p">,</span> <span class="n">lda</span><span class="p">)</span>  
+    <span class="k">return</span> <span class="n">K</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we recreate the plot.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="n">g</span><span class="p">(</span><span class="n">R</span> <span class="o">/</span> <span class="n">Q</span><span class="p">)</span>
+
+<span class="n">lambdas</span> <span class="o">=</span> <span class="mf">0.48</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.52</span>
+<span class="n">line_type</span> <span class="o">=</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="s1">&#39;-.&#39;</span>
+<span class="n">mc_size</span> <span class="o">=</span> <span class="mi">5000</span>
+<span class="n">grid_size</span> <span class="o">=</span> <span class="mi">150</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">lda</span><span class="p">,</span> <span class="n">lt</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">lambdas</span><span class="p">,</span> <span class="n">line_type</span><span class="p">):</span> 
+    <span class="n">xvec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">a</span><span class="p">(</span><span class="n">lda</span><span class="p">),</span> <span class="n">b</span><span class="p">,</span> <span class="n">grid_size</span><span class="p">)</span>
+    <span class="n">obs</span> <span class="o">=</span> <span class="n">generate_ts</span><span class="p">(</span><span class="n">lda</span><span class="p">,</span> <span class="n">ts_length</span><span class="o">=</span><span class="n">mc_size</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">ecdf</span><span class="p">(</span><span class="n">y</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">obs</span> <span class="o">&lt;=</span> <span class="n">y</span><span class="p">)</span> <span class="o">/</span> <span class="n">mc_size</span>
+    <span class="n">yvec</span> <span class="o">=</span> <span class="p">[</span><span class="n">ecdf</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">xvec</span><span class="p">]</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xvec</span><span class="p">,</span> <span class="n">yvec</span><span class="p">,</span> <span class="n">lt</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;$</span><span class="se">\\</span><span class="s1">lambda=</span><span class="si">{</span><span class="n">lda</span><span class="si">}</span><span class="s1">$&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;capital&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ch11_7_0.png" src="_images/ch11_7_0.png" />
+</div>
+</div>
+<p>Now we address exercise 11.26.</p>
+<p>We need to determine the fraction of time the sample spends at the point <span class="math notranslate nohighlight">\(b\)</span>
+in the state space over a long horizon, for different values of <span class="math notranslate nohighlight">\(\lambda\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid_size</span> <span class="o">=</span> <span class="mi">80</span>
+<span class="n">lambdas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.45</span><span class="p">,</span> <span class="mf">0.65</span><span class="p">,</span> <span class="n">grid_size</span><span class="p">)</span>
+<span class="n">mc_size</span> <span class="o">=</span> <span class="mi">5000</span>
+
+<span class="n">prob_at_b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty_like</span><span class="p">(</span><span class="n">lambdas</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">lda</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">lambdas</span><span class="p">):</span>
+    <span class="n">obs</span> <span class="o">=</span> <span class="n">generate_ts</span><span class="p">(</span><span class="n">lda</span><span class="p">,</span> <span class="n">ts_length</span><span class="o">=</span><span class="n">mc_size</span><span class="p">)</span>
+    <span class="n">prob_at_b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">obs</span> <span class="o">==</span> <span class="n">b</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lambdas</span><span class="p">,</span> <span class="n">prob_at_b</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$</span><span class="se">\\</span><span class="s1">psi^*(\{b\})$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$</span><span class="se">\\</span><span class="s1">lambda$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ch11_9_0.png" src="_images/ch11_9_0.png" />
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="ch10.html" title="previous page">Chapter 10 Code</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By John Stachurski<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

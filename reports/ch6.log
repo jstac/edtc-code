@@ -1,0 +1,109 @@
+Traceback (most recent call last):
+  File "/home/john/anaconda3/lib/python3.8/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
+    executenb(
+  File "/home/john/anaconda3/lib/python3.8/site-packages/nbclient/client.py", line 1112, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/home/john/anaconda3/lib/python3.8/site-packages/nbclient/util.py", line 74, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/home/john/anaconda3/lib/python3.8/site-packages/nbclient/util.py", line 53, in just_run
+    return loop.run_until_complete(coro)
+  File "/home/john/anaconda3/lib/python3.8/asyncio/base_events.py", line 616, in run_until_complete
+    return future.result()
+  File "/home/john/anaconda3/lib/python3.8/site-packages/nbclient/client.py", line 553, in async_execute
+    await self.async_execute_cell(
+  File "/home/john/anaconda3/lib/python3.8/site-packages/nbclient/client.py", line 857, in async_execute_cell
+    self._check_raise_for_error(cell, exec_reply)
+  File "/home/john/anaconda3/lib/python3.8/site-packages/nbclient/client.py", line 760, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+gamma = 1.5
+
+@jit       
+def U(c):
+    "The utility function."
+    return c**(1 - gamma) / (1 - gamma)
+
+os = OptimalSaving(U)
+
+sigma_star, v_star = solve_model(os)
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mValueError[0m                                Traceback (most recent call last)
+[0;32m<ipython-input-26-696de29bd34c>[0m in [0;36m<module>[0;34m[0m
+[1;32m      8[0m [0mos[0m [0;34m=[0m [0mOptimalSaving[0m[0;34m([0m[0mU[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      9[0m [0;34m[0m[0m
+[0;32m---> 10[0;31m [0msigma_star[0m[0;34m,[0m [0mv_star[0m [0;34m=[0m [0msolve_model[0m[0;34m([0m[0mos[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m
+[0;32m<ipython-input-25-379ce052b718>[0m in [0;36msolve_model[0;34m(os, tol, max_iter, verbose, print_skip)[0m
+[1;32m     17[0m [0;34m[0m[0m
+[1;32m     18[0m     [0;32mwhile[0m [0mi[0m [0;34m<[0m [0mmax_iter[0m [0;32mand[0m [0merror[0m [0;34m>[0m [0mtol[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 19[0;31m         [0mv_greedy[0m[0;34m,[0m [0mv_new[0m [0;34m=[0m [0mT[0m[0;34m([0m[0mv[0m[0;34m,[0m [0mos[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     20[0m         [0merror[0m [0;34m=[0m [0mnp[0m[0;34m.[0m[0mmax[0m[0;34m([0m[0mnp[0m[0;34m.[0m[0mabs[0m[0;34m([0m[0mv[0m [0;34m-[0m [0mv_new[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     21[0m         [0mi[0m [0;34m+=[0m [0;36m1[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m<ipython-input-24-a70e926a3027>[0m in [0;36mT[0;34m(v, os)[0m
+[1;32m     15[0m [0;34m[0m[0m
+[1;32m     16[0m         [0;31m# Maximize RHS of Bellman equation at state a[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 17[0;31m         [0mc_star[0m[0;34m,[0m [0mv_max[0m [0;34m=[0m [0mmaximize[0m[0;34m([0m[0mos[0m[0;34m.[0m[0mstate_action_value[0m[0;34m,[0m [0;36m1e-10[0m[0;34m,[0m [0ma[0m[0;34m,[0m [0;34m([0m[0ma[0m[0;34m,[0m [0mv[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     18[0m         [0mv_new[0m[0;34m[[0m[0mi[0m[0;34m][0m [0;34m=[0m [0mv_max[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     19[0m         [0mv_greedy[0m[0;34m[[0m[0mi[0m[0;34m][0m [0;34m=[0m [0mc_star[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m<ipython-input-22-9e471b7077cf>[0m in [0;36mmaximize[0;34m(g, a, b, args)[0m
+[1;32m      5[0m     """
+[1;32m      6[0m     [0mobjective[0m [0;34m=[0m [0;32mlambda[0m [0mx[0m[0;34m:[0m [0;34m-[0m[0mg[0m[0;34m([0m[0mx[0m[0;34m,[0m [0;34m*[0m[0margs[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 7[0;31m     [0mresult[0m [0;34m=[0m [0mminimize_scalar[0m[0;34m([0m[0mobjective[0m[0;34m,[0m [0mbounds[0m[0;34m=[0m[0;34m([0m[0ma[0m[0;34m,[0m [0mb[0m[0;34m)[0m[0;34m,[0m [0mmethod[0m[0;34m=[0m[0;34m'bounded'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      8[0m     [0mmaximizer[0m[0;34m,[0m [0mmaximum[0m [0;34m=[0m [0mresult[0m[0;34m.[0m[0mx[0m[0;34m,[0m [0;34m-[0m[0mresult[0m[0;34m.[0m[0mfun[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      9[0m     [0;32mreturn[0m [0mmaximizer[0m[0;34m,[0m [0mmaximum[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m~/anaconda3/lib/python3.8/site-packages/scipy/optimize/_minimize.py[0m in [0;36mminimize_scalar[0;34m(fun, bracket, bounds, args, method, tol, options)[0m
+[1;32m    798[0m         [0;32mif[0m [0misinstance[0m[0;34m([0m[0mdisp[0m[0;34m,[0m [0mbool[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    799[0m             [0moptions[0m[0;34m[[0m[0;34m'disp'[0m[0;34m][0m [0;34m=[0m [0;36m2[0m [0;34m*[0m [0mint[0m[0;34m([0m[0mdisp[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 800[0;31m         [0;32mreturn[0m [0m_minimize_scalar_bounded[0m[0;34m([0m[0mfun[0m[0;34m,[0m [0mbounds[0m[0;34m,[0m [0margs[0m[0;34m,[0m [0;34m**[0m[0moptions[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    801[0m     [0;32melif[0m [0mmeth[0m [0;34m==[0m [0;34m'golden'[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    802[0m         [0;32mreturn[0m [0m_minimize_scalar_golden[0m[0;34m([0m[0mfun[0m[0;34m,[0m [0mbracket[0m[0;34m,[0m [0margs[0m[0;34m,[0m [0;34m**[0m[0moptions[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m~/anaconda3/lib/python3.8/site-packages/scipy/optimize/optimize.py[0m in [0;36m_minimize_scalar_bounded[0;34m(func, bounds, args, xatol, maxiter, disp, **unknown_options)[0m
+[1;32m   2009[0m         [0msi[0m [0;34m=[0m [0mnp[0m[0;34m.[0m[0msign[0m[0;34m([0m[0mrat[0m[0;34m)[0m [0;34m+[0m [0;34m([0m[0mrat[0m [0;34m==[0m [0;36m0[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   2010[0m         [0mx[0m [0;34m=[0m [0mxf[0m [0;34m+[0m [0msi[0m [0;34m*[0m [0mnp[0m[0;34m.[0m[0mmaximum[0m[0;34m([0m[0mnp[0m[0;34m.[0m[0mabs[0m[0;34m([0m[0mrat[0m[0;34m)[0m[0;34m,[0m [0mtol1[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 2011[0;31m         [0mfu[0m [0;34m=[0m [0mfunc[0m[0;34m([0m[0mx[0m[0;34m,[0m [0;34m*[0m[0margs[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   2012[0m         [0mnum[0m [0;34m+=[0m [0;36m1[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   2013[0m         [0mfmin_data[0m [0;34m=[0m [0;34m([0m[0mnum[0m[0;34m,[0m [0mx[0m[0;34m,[0m [0mfu[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m<ipython-input-22-9e471b7077cf>[0m in [0;36m<lambda>[0;34m(x)[0m
+[1;32m      4[0m     [0mThe[0m [0mtuple[0m [0margs[0m [0mcollects[0m [0many[0m [0mextra[0m [0marguments[0m [0mto[0m [0mg[0m[0;34m.[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      5[0m     """
+[0;32m----> 6[0;31m     [0mobjective[0m [0;34m=[0m [0;32mlambda[0m [0mx[0m[0;34m:[0m [0;34m-[0m[0mg[0m[0;34m([0m[0mx[0m[0;34m,[0m [0;34m*[0m[0margs[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      7[0m     [0mresult[0m [0;34m=[0m [0mminimize_scalar[0m[0;34m([0m[0mobjective[0m[0;34m,[0m [0mbounds[0m[0;34m=[0m[0;34m([0m[0ma[0m[0;34m,[0m [0mb[0m[0;34m)[0m[0;34m,[0m [0mmethod[0m[0;34m=[0m[0;34m'bounded'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      8[0m     [0mmaximizer[0m[0;34m,[0m [0mmaximum[0m [0;34m=[0m [0mresult[0m[0;34m.[0m[0mx[0m[0;34m,[0m [0;34m-[0m[0mresult[0m[0;34m.[0m[0mfun[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m<ipython-input-23-67bb6087f948>[0m in [0;36mstate_action_value[0;34m(self, s, a, v_array)[0m
+[1;32m     30[0m         [0mv[0m [0;34m=[0m [0minterp1d[0m[0;34m([0m[0mself[0m[0;34m.[0m[0mgrid[0m[0;34m,[0m [0mv_array[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     31[0m [0;34m[0m[0m
+[0;32m---> 32[0;31m         [0;32mreturn[0m [0mU[0m[0;34m([0m[0ma[0m[0;34m-[0m[0ms[0m[0;34m)[0m [0;34m+[0m [0mrho[0m [0;34m*[0m [0mnp[0m[0;34m.[0m[0mmean[0m[0;34m([0m[0mv[0m[0;34m([0m[0mR[0m [0;34m*[0m [0ms[0m [0;34m+[0m [0mshocks[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m
+[0;32m~/anaconda3/lib/python3.8/site-packages/scipy/interpolate/polyint.py[0m in [0;36m__call__[0;34m(self, x)[0m
+[1;32m     76[0m         """
+[1;32m     77[0m         [0mx[0m[0;34m,[0m [0mx_shape[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0m_prepare_x[0m[0;34m([0m[0mx[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 78[0;31m         [0my[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0m_evaluate[0m[0;34m([0m[0mx[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     79[0m         [0;32mreturn[0m [0mself[0m[0;34m.[0m[0m_finish_y[0m[0;34m([0m[0my[0m[0;34m,[0m [0mx_shape[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     80[0m [0;34m[0m[0m
+
+[0;32m~/anaconda3/lib/python3.8/site-packages/scipy/interpolate/interpolate.py[0m in [0;36m_evaluate[0;34m(self, x_new)[0m
+[1;32m    675[0m         [0my_new[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0m_call[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mx_new[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    676[0m         [0;32mif[0m [0;32mnot[0m [0mself[0m[0;34m.[0m[0m_extrapolate[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 677[0;31m             [0mbelow_bounds[0m[0;34m,[0m [0mabove_bounds[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0m_check_bounds[0m[0;34m([0m[0mx_new[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    678[0m             [0;32mif[0m [0mlen[0m[0;34m([0m[0my_new[0m[0;34m)[0m [0;34m>[0m [0;36m0[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    679[0m                 [0;31m# Note fill_value must be broadcast up to the proper size[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m~/anaconda3/lib/python3.8/site-packages/scipy/interpolate/interpolate.py[0m in [0;36m_check_bounds[0;34m(self, x_new)[0m
+[1;32m    707[0m                              "range.")
+[1;32m    708[0m         [0;32mif[0m [0mself[0m[0;34m.[0m[0mbounds_error[0m [0;32mand[0m [0mabove_bounds[0m[0;34m.[0m[0many[0m[0;34m([0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 709[0;31m             raise ValueError("A value in x_new is above the interpolation "
+[0m[1;32m    710[0m                              "range.")
+[1;32m    711[0m [0;34m[0m[0m
+
+[0;31mValueError[0m: A value in x_new is above the interpolation range.
+ValueError: A value in x_new is above the interpolation range.
+
