@@ -81,7 +81,6 @@ And here's the code that generated figure 4.2.
 
 ```{code-cell} ipython3
 
-
 def draw_trajectory(x, y, ax, n=10):
     """
     Draw the trajectory of length n starting from (x, y).
@@ -144,7 +143,6 @@ As in the textbook, let's plot a trajectory starting from 0.11.
 
 
 ```{code-cell} ipython3
-
 
 q = DS(h=lambda x: 4 * x * (1 - x), x=0.11)
 t = q.trajectory(200)
