@@ -211,7 +211,7 @@ plt.show()
 
 Our next task is to simulate from the "threshold exernalities" model.
 
-The following code generates figures 6.5 and 6.6.
+The following code generates figures 6.6 and 6.7.
 
 
 ```{code-cell} ipython3
