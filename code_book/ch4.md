@@ -234,7 +234,7 @@ while r < 4:
     ax.plot([r] * len(t), t, 'k.', ms=0.4)
     r = r + 0.005
 
-ax.set_xlabel(r'$r$', fontsize=16)
+ax.set_xlabel('$r$', fontsize=16)
 plt.show()
 
 ```
