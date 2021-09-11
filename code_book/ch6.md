@@ -79,7 +79,7 @@ capital.
 ```{code-cell} ipython3
 
 @jit
-def sim_from_marginal(t=10, init=1, sim_size=100_000, params=default_params):
+def sim_from_marginal(t=10, init=1, sim_size=1000, params=default_params):
     k_draws = np.empty(sim_size)
     for i in range(sim_size):
         k = init
