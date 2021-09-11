@@ -26,7 +26,6 @@ from scipy.interpolate import interp1d
 from scipy.optimize import minimize_scalar, brentq
 from scipy.stats import beta
 
-
 ```
 
 ## First Steps
