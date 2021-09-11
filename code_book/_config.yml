@@ -1,7 +1,8 @@
 # Book settings
-title: Economic Dynamics Python Code
+title: Economic Dynamics 
 author: John Stachurski
-# logo: logo.png
+logo: logo.png
+
 
 sphinx:
     config:
@@ -25,6 +26,7 @@ sphinx:
 
 execute:
     execute_notebooks: cache
+    timeout: -1
 
 latex:
     latex_engine: "xelatex"
