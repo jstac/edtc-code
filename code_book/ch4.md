@@ -314,7 +314,7 @@ ax.plot(X)
 plt.show()
 ```
 
-Here's a solution to exercises 4.23.  
+Here's a solution to exercise 4.23.  
 
 
 ```{code-cell} ipython3
