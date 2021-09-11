@@ -127,7 +127,7 @@ fig, ax = plt.subplots()
 names = 'poor', 'middle', 'rich'
 ax.bar(names, histogram, edgecolor='k', alpha=0.4)
 ax.set_title('time series average')
-
+ax.set_yticks((0, 0.2, 0.4, 0.6))
 plt.show()
 
 ```
