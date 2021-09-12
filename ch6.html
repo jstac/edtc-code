@@ -333,7 +333,7 @@ capital.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@jit</span>
-<span class="k">def</span> <span class="nf">sim_from_marginal</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">sim_size</span><span class="o">=</span><span class="mi">100_000</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">default_params</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">sim_from_marginal</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">sim_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">default_params</span><span class="p">):</span>
     <span class="n">k_draws</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">sim_size</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">sim_size</span><span class="p">):</span>
         <span class="n">k</span> <span class="o">=</span> <span class="n">init</span>
@@ -355,7 +355,7 @@ take the mean, which solves exercise 6.2.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>12.79988924614681
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>12.820298089686927
 </pre></div>
 </div>
 </div>
@@ -371,7 +371,7 @@ take the mean, which solves exercise 6.2.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>26.580349450573284
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>26.53508930557267
 </pre></div>
 </div>
 </div>
@@ -389,9 +389,9 @@ due to higher savings.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean capital from initial condition 5 is 16.45
-Mean capital from initial condition 10 is 19.35
-Mean capital from initial condition 20 is 23.74
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean capital from initial condition 5 is 16.50
+Mean capital from initial condition 10 is 19.38
+Mean capital from initial condition 20 is 23.77
 </pre></div>
 </div>
 </div>
@@ -410,9 +410,9 @@ lagged capital.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean capital at 50 is 22.74
-Mean capital at 100 is 25.74
-Mean capital at 200 is 25.98
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean capital at 50 is 22.75
+Mean capital at 100 is 25.71
+Mean capital at 200 is 26.08
 </pre></div>
 </div>
 </div>
@@ -439,8 +439,8 @@ plot starting from <span class="math notranslate nohighlight">\(k_0=1\)</span> a
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sample mean is 12.7960
-The 95% Confidence interval is  [12.7894, 12.8026]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sample mean is 12.8343
+The 95% Confidence interval is  [12.7693, 12.8992]
 </pre></div>
 </div>
 </div>
@@ -501,7 +501,7 @@ values using the method described in the exercise.</p>
 </div>
 </div>
 <p>Our next task is to simulate from the “threshold exernalities” model.</p>
-<p>The following code generates figures 6.5 and 6.6.</p>
+<p>The following code generates figures 6.6 and 6.7.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.5</span>     <span class="c1"># capital intensity</span>
@@ -572,7 +572,7 @@ above <span class="math notranslate nohighlight">\(k_b\)</span> using simulation
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>12.820127211007364
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>12.825768361534907
 </pre></div>
 </div>
 </div>
@@ -625,7 +625,7 @@ correctly on arrays as well as scalars.</p>
 <img alt="_images/ch6_27_0.png" src="_images/ch6_27_0.png" />
 </div>
 </div>
-<p>Next we turn to exercise~6.8, which concerns the STAR model.</p>
+<p>Next we turn to exercise~6.12, which concerns the STAR model.</p>
 <p>We will use a <code class="docutils literal notranslate"><span class="pre">jitclass</span></code>, which requires us to set up parameters.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -715,7 +715,7 @@ marginal given a stochastic kernel and a set of draws from time <span class="mat
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">lae_factory</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">x_data</span><span class="p">):</span>
     
     <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">y</span><span class="p">):</span>
-       <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">p</span><span class="p">(</span><span class="n">x_data</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">p</span><span class="p">(</span><span class="n">x_data</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
 
     <span class="k">return</span> <span class="n">f</span>
     
@@ -1158,7 +1158,7 @@ the optimal policy.</p>
 </div>
 </div>
 <p>To compute the policy value we iterate until convergence, starting
-from some guess of <span class="math notranslate nohighlight">\(v_sigma\)</span> represented by <code class="docutils literal notranslate"><span class="pre">v_guess</span></code>.</p>
+from some guess of <span class="math notranslate nohighlight">\(v_\sigma\)</span> represented by <code class="docutils literal notranslate"><span class="pre">v_guess</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_policy_value</span><span class="p">(</span><span class="n">os</span><span class="p">,</span>
@@ -1318,7 +1318,7 @@ model.</p>
 <img alt="_images/ch6_64_0.png" src="_images/ch6_64_0.png" />
 </div>
 </div>
-<p>Our final task for this chapter is to solve exercise 6.27, which involves
+<p>Our final task for this chapter is to solve exercise 6.28, which involves
 computing the stationary density of the associated state process for
 quantities.</p>
 <p>To do so we use the look ahead estimator.</p>

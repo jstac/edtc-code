@@ -4,7 +4,8 @@ Economic Dynamics Code Book
 **AUTHOR**: [John Stachurski](https://johnstachurski.net/)
 
 
-This Jupyter book provides code to accompany the second edition of the textbook [Economic Dynamics: Theory and
+This Jupyter book provides code to accompany the second edition of the
+textbook [Economic Dynamics: Theory and
         Computation](https://johnstachurski.net/edtc.html), published by the [MIT
 Press](https://mitpress.mit.edu/).  The code recreates figures from the book and gives solutions to exercises.
 

@@ -26,7 +26,6 @@ from scipy.interpolate import interp1d
 from scipy.optimize import minimize_scalar, brentq
 from scipy.stats import beta
 
-
 ```
 
 ## First Steps
@@ -79,7 +78,7 @@ capital.
 ```{code-cell} ipython3
 
 @jit
-def sim_from_marginal(t=10, init=1, sim_size=100_000, params=default_params):
+def sim_from_marginal(t=10, init=1, sim_size=1000, params=default_params):
     k_draws = np.empty(sim_size)
     for i in range(sim_size):
         k = init
@@ -211,7 +210,7 @@ plt.show()
 
 Our next task is to simulate from the "threshold exernalities" model.
 
-The following code generates figures 6.5 and 6.6.
+The following code generates figures 6.6 and 6.7.
 
 
 ```{code-cell} ipython3
@@ -323,7 +322,7 @@ plt.show()
 
 ```
 
-Next we turn to exercise~6.8, which concerns the STAR model.
+Next we turn to exercise~6.12, which concerns the STAR model.
 
 We will use a `jitclass`, which requires us to set up parameters.
 
@@ -405,7 +404,7 @@ marginal given a stochastic kernel and a set of draws from time $t+1$.
 def lae_factory(p, x_data):
     
     def f(y):
-       return np.mean(p(x_data, y))
+        return np.mean(p(x_data, y))
 
     return f
     
@@ -800,7 +799,7 @@ def T_sigma(v, sigma, os):
 ```
 
 To compute the policy value we iterate until convergence, starting
-from some guess of $v_sigma$ represented by `v_guess`.
+from some guess of $v_\sigma$ represented by `v_guess`.
 
 ```{code-cell} ipython3
 def compute_policy_value(os,
@@ -947,7 +946,7 @@ plt.show()
 
 ```
 
-Our final task for this chapter is to solve exercise 6.27, which involves
+Our final task for this chapter is to solve exercise 6.28, which involves
 computing the stationary density of the associated state process for
 quantities.
 

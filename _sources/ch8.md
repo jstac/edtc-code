@@ -32,7 +32,7 @@ a, b = 0.8, 1.0  # parameters
 
 def phi(z):
     "Standard normal density."
-    return (1/(2 * np.pi)) * np.exp(-z**2/2)
+    return (1/np.sqrt(2 * np.pi)) * np.exp(-z**2/2)
 
 def p(x, y):
     return phi(y - a * x - b)
