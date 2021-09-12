@@ -322,7 +322,7 @@ plt.show()
 
 ```
 
-Next we turn to exercise~6.8, which concerns the STAR model.
+Next we turn to exercise~6.12, which concerns the STAR model.
 
 We will use a `jitclass`, which requires us to set up parameters.
 

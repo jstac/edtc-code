@@ -247,11 +247,11 @@ Our first task is to simulate time series from Hamilton's Markov chain
 
 
 ```{code-cell} ipython3
-pH = ((0.971, 0.029, 0.000),       # Hamilton's kernel
+p_H = ((0.971, 0.029, 0.000),       # Hamilton's kernel
       (0.145, 0.778, 0.077),
       (0.000, 0.508, 0.492))
 
-pH = np.array(pH)                  # Convert to numpy array
+p_H = np.array(p_H)                  # Convert to numpy array
 
 S = np.array((0, 1, 2))
 ```
@@ -291,7 +291,7 @@ Let's plot a trajectory.
 ```{code-cell} ipython3
 fig, ax = plt.subplots()
 
-X = trajectory(0, pH, S, n=500)
+X = trajectory(0, p_H, S, n=500)
 
 ax.plot(X)
 plt.show()
@@ -304,7 +304,7 @@ JIT-compiled and very fast.
 
 ```{code-cell} ipython3
 
-mc = MarkovChain(pH, state_values=S)
+mc = MarkovChain(p_H, state_values=S)
 X = mc.simulate(init=0, ts_length=500)
 
 fig, ax = plt.subplots()
@@ -324,7 +324,7 @@ def compute_marginal(n=100_000, T=10):
         X = 2                   # start in state SR
         for t in range(T):
             W = np.random.rand()
-            X = tau(W, S, pH[X, :])
+            X = tau(W, S, p_H[X, :])
         X_vals[i] = X
     return np.mean(X_vals == 0)
 
@@ -346,7 +346,7 @@ def compute_marginal_2(n=100_000, T=10):
         X = 2                   # start in state SR
         for t in range(T):
             W = np.random.rand()
-            X = tau(W, S, pH[X, :])
+            X = tau(W, S, p_H[X, :])
         if X == 0:
             counter += 1
 
@@ -364,7 +364,7 @@ psi = (1, 0, 0)         # start in NG
 h = (1000, 0, -1000)    # profits
 
 for t in range(T):
-    psi = psi @ pH
+    psi = psi @ p_H
 
 print(psi @ h)
 ```
@@ -375,7 +375,7 @@ Now let's see what happens when we start in severe recession.
 psi = (0, 0, 1) 
 
 for t in range(T):
-    psi = psi @ pH
+    psi = psi @ p_H
 
 print(psi @ h)
 ```
@@ -395,7 +395,7 @@ for i in (0, 1, 2):
     psi = np.zeros(3)
     psi[i] = 1
     for t in range(T):
-        psi = psi @ pH
+        psi = psi @ p_H
     print(f"Profits in state {i} at date {T} equals {psi @ h}")
 ```
 
@@ -412,7 +412,7 @@ T = 5
 psi = (0.2, 0.2, 0.6) 
 
 for t in range(T):
-    psi = psi @ pH
+    psi = psi @ p_H
 
 print(psi @ h)
 ```
@@ -427,7 +427,7 @@ def path_prob(p, psi, X):   # X gives a time path
     return prob
 
 psi = np.array((0.2, 0.2, 0.6))
-prob = path_prob(pH, psi, (0, 1, 0))
+prob = path_prob(p_H, psi, (0, 1, 0))
 
 print(prob)
 ```
@@ -441,7 +441,7 @@ for x0 in recession_states:
     for x1 in recession_states:
         for x2 in recession_states:
             path = x0, x1, x2
-            counter += path_prob(pH, psi, path)
+            counter += path_prob(p_H, psi, path)
 
 print(counter)
 ```
@@ -452,7 +452,7 @@ Here's a solution to exercise 4.34.
 ```{code-cell} ipython3
 counter = 0
 m  = 10_000
-mc = MarkovChain(pH)
+mc = MarkovChain(p_H)
 
 for i in range(m):
     x0 = tau(np.random.rand(), S, psi)
@@ -479,7 +479,7 @@ discount = rho
 Q = np.identity(3)
 
 for t in T_vals:
-    Q = Q @ pH
+    Q = Q @ p_H
     discount = discount * rho
     current_profits += discount * np.inner(psi, Q @ h)
     profits.append(current_profits)
@@ -597,7 +597,7 @@ Now let's look at exercise 4.43.
 
 
 ```{code-cell} ipython3
-psi_star = compute_stationary(pH)  
+psi_star = compute_stationary(p_H)  
 print(np.inner(psi_star, h))
 ```
 
@@ -605,7 +605,7 @@ If we compute profits at $t=1000$, starting from a range of initial
 conditions, we get very similar results.
 
 ```{code-cell} ipython3
-pT = np.linalg.matrix_power(pH, 1000)
+pT = np.linalg.matrix_power(p_H, 1000)
 psi_vecs = (1, 0, 0), (0, 1, 0), (0, 0, 1)
 
 for psi in psi_vecs:
@@ -626,7 +626,7 @@ def compute_return_time(x, p, max_iter=100_000):
     t = 0
     while t < max_iter:
         W = np.random.rand()
-        X = tau(W, S, pH[X, :])
+        X = tau(W, S, p_H[X, :])
         t += 1
         if X == x:
             return t
@@ -639,14 +639,14 @@ def compute_mean_return_time(x, p, n=100_000):
     return counter / n
 
 
-[compute_mean_return_time(i, pH) for i in range(3)]
+[compute_mean_return_time(i, p_H) for i in range(3)]
 
 ```
 
 For comparison:
 
 ```{code-cell} ipython3
-psi_star = compute_stationary(pH)
+psi_star = compute_stationary(p_H)
 1/ psi_star
 
 ```
@@ -737,7 +737,7 @@ the stationary probability assigned to normal growth:
 
 
 ```{code-cell} ipython3
-psi_star = compute_stationary(pH)  
+psi_star = compute_stationary(p_H)  
 psi_star[0]
 ```
 
@@ -747,7 +747,7 @@ follows.
 
 ```{code-cell} ipython3
 T = 1_000_000
-mc = MarkovChain(pH)
+mc = MarkovChain(p_H)
 X = mc.simulate(init=0, ts_length=T)
 np.mean(X == 0)
 ```
@@ -762,7 +762,7 @@ Previously we calculated steady state profits via
 
 ```{code-cell} ipython3
 h = (1000, 0, -1000)
-psi_star = compute_stationary(pH)  
+psi_star = compute_stationary(p_H)  
 print(np.inner(psi_star, h))
 ```
 
