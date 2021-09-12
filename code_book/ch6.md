@@ -947,7 +947,7 @@ plt.show()
 
 ```
 
-Our final task for this chapter is to solve exercise 6.27, which involves
+Our final task for this chapter is to solve exercise 6.28, which involves
 computing the stationary density of the associated state process for
 quantities.
 
