@@ -800,7 +800,7 @@ def T_sigma(v, sigma, os):
 ```
 
 To compute the policy value we iterate until convergence, starting
-from some guess of $v_sigma$ represented by `v_guess`.
+from some guess of $v_\sigma$ represented by `v_guess`.
 
 ```{code-cell} ipython3
 def compute_policy_value(os,
