@@ -404,7 +404,7 @@ marginal given a stochastic kernel and a set of draws from time $t+1$.
 def lae_factory(p, x_data):
     
     def f(y):
-       return np.mean(p(x_data, y))
+        return np.mean(p(x_data, y))
 
     return f
     
