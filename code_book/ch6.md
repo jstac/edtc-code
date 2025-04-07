@@ -496,8 +496,8 @@ class AD:
         return a * b
 
     def p(self, x, y):
-        z = y / (self.s * self.A(x) * self.f(x))
-        return self.phi(z) / z
+        z = self.s * self.A(x) * self.f(x)
+        return self.phi(y/z) / z
         
 ```
 
