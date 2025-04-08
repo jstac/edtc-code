@@ -522,7 +522,7 @@ for sigma, g in zip(sigmas, greys):
             color=g, 
             lw=2, 
             alpha=0.6,
-            label=f'$\sigma={sigma}$')
+            label=rf'$\sigma={sigma}$')
 
 ax.set_xlabel('$k$')
 ax.legend()
