@@ -496,8 +496,8 @@ class AD:
         return a * b
 
     def p(self, x, y):
-        z = y / (self.s * self.A(x) * self.f(x))
-        return self.phi(z) / z
+        z = self.s * self.A(x) * self.f(x)
+        return self.phi(y/z) / z
         
 ```
 
@@ -522,7 +522,7 @@ for sigma, g in zip(sigmas, greys):
             color=g, 
             lw=2, 
             alpha=0.6,
-            label=f'$\sigma={sigma}$')
+            label=rf'$\sigma={sigma}$')
 
 ax.set_xlabel('$k$')
 ax.legend()
