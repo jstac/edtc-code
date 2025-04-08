@@ -1,271 +1,364 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" data-content_root="" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Chapter 6 Code &#8212; Economic Dynamics</title>
-    
-  <link href="_static/css/theme.css" rel="stylesheet" />
-  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    
-      
-
-    
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
-    
-  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.5ea377869091fd0449014c60fc090103.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/togglebutton.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script >
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script src="_static/scripts/sphinx-book-theme.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"Exp": ["\\operatorname{Exp}"], "Binomial": ["\\operatorname{Binomial}"], "Poisson": ["\\operatorname{Poisson}"], "BB": ["\\mathbb{B}"], "EE": ["\\mathbb{E}"], "PP": ["\\mathbb{P}"], "RR": ["\\mathbb{R}"], "NN": ["\\mathbb{N}"], "ZZ": ["\\mathbb{Z}"], "dD": ["\\mathcal{D}"], "fF": ["\\mathcal{F}"], "lL": ["\\mathcal{L}"], "linop": ["\\mathcal{L}(\\mathbb{B})"], "linopell": ["\\mathcal{L}(\\ell_1)"]}}, "tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script>window.MathJax = {"tex": {"macros": {"Exp": ["\\operatorname{Exp}"], "Binomial": ["\\operatorname{Binomial}"], "Poisson": ["\\operatorname{Poisson}"], "BB": ["\\mathbb{B}"], "EE": ["\\mathbb{E}"], "PP": ["\\mathbb{P}"], "RR": ["\\mathbb{R}"], "NN": ["\\mathbb{N}"], "ZZ": ["\\mathbb{Z}"], "dD": ["\\mathcal{D}"], "fF": ["\\mathcal{F}"], "lL": ["\\mathcal{L}"], "linop": ["\\mathcal{L}(\\mathbb{B})"], "linopell": ["\\mathcal{L}(\\ell_1)"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ch6';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Chapter 7 Code" href="ch7.html" />
     <link rel="prev" title="Chapter 5 Code" href="ch5.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
-    <div class="container-xl">
-      <div class="row">
-          
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
     
-        <div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="index.html">
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
       
-      <img src="_static/logo.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Economic Dynamics</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="intro.html">
-   Economic Dynamics Code Book
-  </a>
- </li>
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Economic Dynamics - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Economic Dynamics - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Economic Dynamics Code Book
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="ch1.html">Chapter 1 Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch2.html">Chapter 2 Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch3.html">Chapter 3 Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch4.html">Chapter 4 Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch5.html">Chapter 5 Code</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Chapter 6 Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch7.html">Chapter 7 Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch8.html">Chapter 8 Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch9.html">Chapter 9 Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch10.html">Chapter 10 Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ch11.html">Chapter 11 Code</a></li>
 </ul>
-<ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="ch1.html">
-   Chapter 1 Code
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ch2.html">
-   Chapter 2 Code
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ch3.html">
-   Chapter 3 Code
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ch4.html">
-   Chapter 4 Code
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ch5.html">
-   Chapter 5 Code
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Chapter 6 Code
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ch7.html">
-   Chapter 7 Code
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ch8.html">
-   Chapter 8 Code
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ch9.html">
-   Chapter 9 Code
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ch10.html">
-   Chapter 10 Code
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ch11.html">
-   Chapter 11 Code
-  </a>
- </li>
-</ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        <a class="dropdown-buttons"
-            href="_sources/ch6.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/ch6.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+</nav></div>
     </div>
-</div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
 
-            <!-- Source interaction buttons -->
 
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/ch6.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
         
         
-        
-        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
     </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/ch6.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
 </div>
 
-        </div>
 
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Chapter 6 Code</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
             
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div>
+                <h2> Contents </h2>
             </div>
-            <nav id="bd-toc-nav">
+            <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#first-steps">
-   First Steps
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#optimal-savings">
-   Optimal Savings
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#stochastic-speculative-price">
-   Stochastic Speculative Price
-  </a>
- </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#first-steps">First Steps</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optimal-savings">Optimal Savings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stochastic-speculative-price">Stochastic Speculative Price</a></li>
 </ul>
-
             </nav>
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
-              <div>
+
+              
                 
-  <div class="section" id="chapter-6-code">
-<h1>Chapter 6 Code<a class="headerlink" href="#chapter-6-code" title="Permalink to this headline">¶</a></h1>
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="chapter-6-code">
+<h1>Chapter 6 Code<a class="headerlink" href="#chapter-6-code" title="Permalink to this heading">#</a></h1>
 <p>We start with some imports.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -280,8 +373,8 @@
 </div>
 </div>
 </div>
-<div class="section" id="first-steps">
-<h2>First Steps<a class="headerlink" href="#first-steps" title="Permalink to this headline">¶</a></h2>
+<section id="first-steps">
+<h2>First Steps<a class="headerlink" href="#first-steps" title="Permalink to this heading">#</a></h2>
 <p>Here is the code that generated figure 6.1.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -325,7 +418,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ch6_3_0.png" src="_images/ch6_3_0.png" />
+<img alt="_images/d68b47375c934e4f2dcc5ba8460f4d8fda3a79a3a682d13c9b5fa405e07542b7.png" src="_images/d68b47375c934e4f2dcc5ba8460f4d8fda3a79a3a682d13c9b5fa405e07542b7.png" />
 </div>
 </div>
 <p>Here is a function to generate draws from the time <span class="math notranslate nohighlight">\(t\)</span> marginal distribution of
@@ -355,7 +448,7 @@ take the mean, which solves exercise 6.2.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>12.820298089686927
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>12.75486241264407
 </pre></div>
 </div>
 </div>
@@ -371,7 +464,7 @@ take the mean, which solves exercise 6.2.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>26.53508930557267
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>26.58740841251692
 </pre></div>
 </div>
 </div>
@@ -389,9 +482,9 @@ due to higher savings.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean capital from initial condition 5 is 16.50
-Mean capital from initial condition 10 is 19.38
-Mean capital from initial condition 20 is 23.77
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean capital from initial condition 5 is 16.48
+Mean capital from initial condition 10 is 19.36
+Mean capital from initial condition 20 is 23.69
 </pre></div>
 </div>
 </div>
@@ -410,9 +503,9 @@ lagged capital.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean capital at 50 is 22.75
-Mean capital at 100 is 25.71
-Mean capital at 200 is 26.08
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean capital at 50 is 22.77
+Mean capital at 100 is 25.78
+Mean capital at 200 is 26.02
 </pre></div>
 </div>
 </div>
@@ -439,8 +532,8 @@ plot starting from <span class="math notranslate nohighlight">\(k_0=1\)</span> a
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sample mean is 12.8343
-The 95% Confidence interval is  [12.7693, 12.8992]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sample mean is 12.8169
+The 95% Confidence interval is  [12.7471, 12.8867]
 </pre></div>
 </div>
 </div>
@@ -472,7 +565,7 @@ values using the method described in the exercise.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ch6_17_0.png" src="_images/ch6_17_0.png" />
+<img alt="_images/095bc162590c065b44b8b3829173a4afef58fb1cba0da6bc41ac5f461d897355.png" src="_images/095bc162590c065b44b8b3829173a4afef58fb1cba0da6bc41ac5f461d897355.png" />
 </div>
 </div>
 <p>Exercise 6.8 asks us to compute the empirical distribution of <span class="math notranslate nohighlight">\(\psi_t\)</span> when
@@ -497,7 +590,7 @@ values using the method described in the exercise.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ch6_19_0.png" src="_images/ch6_19_0.png" />
+<img alt="_images/7d5863e1ae9bb0197eead7a1667240b021995c2b12cb4361ab4326bf7af0b0c9.png" src="_images/7d5863e1ae9bb0197eead7a1667240b021995c2b12cb4361ab4326bf7af0b0c9.png" />
 </div>
 </div>
 <p>Our next task is to simulate from the “threshold exernalities” model.</p>
@@ -546,7 +639,7 @@ values using the method described in the exercise.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ch6_21_0.png" src="_images/ch6_21_0.png" />
+<img alt="_images/378b00753374ebec4d3414047e7c35ee88d3c14b5b4ed868c159d14c8a58b1ee.png" src="_images/378b00753374ebec4d3414047e7c35ee88d3c14b5b4ed868c159d14c8a58b1ee.png" />
 </div>
 </div>
 <p>The next piece of code computes an approximation of the first passage time
@@ -572,7 +665,7 @@ above <span class="math notranslate nohighlight">\(k_b\)</span> using simulation
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>12.825768361534907
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>12.792404728970695
 </pre></div>
 </div>
 </div>
@@ -613,7 +706,7 @@ correctly on arrays as well as scalars.</p>
 <span class="k">for</span> <span class="n">delta</span><span class="p">,</span> <span class="n">ax</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">deltas</span><span class="p">,</span> <span class="n">axes</span><span class="p">):</span>
     <span class="n">f</span> <span class="o">=</span> <span class="n">kde_factory</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span> <span class="n">delta</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_grid</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">x_grid</span><span class="p">))</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;$\delta_n = </span><span class="si">{</span><span class="n">delta</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">rf</span><span class="s2">&quot;$\delta_n = </span><span class="si">{</span><span class="n">delta</span><span class="si">}</span><span class="s2">$&quot;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="c1">#plt.savefig(&quot;kdes.pdf&quot;)</span>
@@ -622,7 +715,7 @@ correctly on arrays as well as scalars.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ch6_27_0.png" src="_images/ch6_27_0.png" />
+<img alt="_images/511b0e19a5b182b4c40a50661093082acefad9ac5b6e72c919d4b762710bc169.png" src="_images/511b0e19a5b182b4c40a50661093082acefad9ac5b6e72c919d4b762710bc169.png" />
 </div>
 </div>
 <p>Next we turn to exercise~6.12, which concerns the STAR model.</p>
@@ -705,7 +798,7 @@ stochastic kernel.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ch6_32_0.png" src="_images/ch6_32_0.png" />
+<img alt="_images/2dcb6daf17c89c8df57644b37a68ff6dfb4d28b597cc9a7b62572615ddf5a6fe.png" src="_images/2dcb6daf17c89c8df57644b37a68ff6dfb4d28b597cc9a7b62572615ddf5a6fe.png" />
 </div>
 </div>
 <p>Now we use a closure to produce a look ahead estimator of the time <span class="math notranslate nohighlight">\(t\)</span>
@@ -754,7 +847,7 @@ marginal given a stochastic kernel and a set of draws from time <span class="mat
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ch6_36_0.png" src="_images/ch6_36_0.png" />
+<img alt="_images/c5de4fb3afb4a2224720a0b1457e4836feb6e3624cf77628a59e137c894c3059.png" src="_images/c5de4fb3afb4a2224720a0b1457e4836feb6e3624cf77628a59e137c894c3059.png" />
 </div>
 </div>
 <p>Solutions to exercises 6.13 – 6.15 are omitted.  They can be solved using
@@ -811,8 +904,8 @@ techniques similar to those described above and immediately below.</p>
         <span class="k">return</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span>
 
     <span class="k">def</span> <span class="nf">p</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-        <span class="n">z</span> <span class="o">=</span> <span class="n">y</span> <span class="o">/</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">s</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">phi</span><span class="p">(</span><span class="n">z</span><span class="p">)</span> <span class="o">/</span> <span class="n">z</span>
+        <span class="n">z</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">s</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">phi</span><span class="p">(</span><span class="n">y</span><span class="o">/</span><span class="n">z</span><span class="p">)</span> <span class="o">/</span> <span class="n">z</span>
         
 </pre></div>
 </div>
@@ -837,7 +930,7 @@ techniques similar to those described above and immediately below.</p>
             <span class="n">color</span><span class="o">=</span><span class="n">g</span><span class="p">,</span> 
             <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> 
             <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span>
-            <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;$\sigma=</span><span class="si">{</span><span class="n">sigma</span><span class="si">}</span><span class="s1">$&#39;</span><span class="p">)</span>
+            <span class="n">label</span><span class="o">=</span><span class="sa">rf</span><span class="s1">&#39;$\sigma=</span><span class="si">{</span><span class="n">sigma</span><span class="si">}</span><span class="s1">$&#39;</span><span class="p">)</span>
 
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$k$&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
@@ -848,12 +941,12 @@ techniques similar to those described above and immediately below.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ch6_40_0.png" src="_images/ch6_40_0.png" />
+<img alt="_images/8aa4b3161fe22cc0983a25c6d8470d1068f2a1f1151637f656a25c59c760f97e.png" src="_images/8aa4b3161fe22cc0983a25c6d8470d1068f2a1f1151637f656a25c59c760f97e.png" />
 </div>
 </div>
-</div>
-<div class="section" id="optimal-savings">
-<h2>Optimal Savings<a class="headerlink" href="#optimal-savings" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="optimal-savings">
+<h2>Optimal Savings<a class="headerlink" href="#optimal-savings" title="Permalink to this heading">#</a></h2>
 <p>Optimization routines in the Python numerical tool set typically perform
 minimization.</p>
 <p>It is useful for us to have a function
@@ -863,7 +956,7 @@ of -g.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">maximize</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Returns the maximal value and the maximizer.</span>
 <span class="sd">    The tuple args collects any extra arguments to g.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -899,7 +992,7 @@ of -g.</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">shocks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">b</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">shock_size</span><span class="p">))</span>
 
     <span class="k">def</span> <span class="nf">state_action_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">v_array</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Right hand side of the Bellman equation.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
@@ -920,7 +1013,7 @@ of -g.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">T</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">os</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    The Bellman operator.  Updates the guess of the value function</span>
 <span class="sd">    and also computes a v-greedy policy.</span>
 
@@ -953,7 +1046,7 @@ iteration, starting at the utility function.</p>
                 <span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
                 <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                 <span class="n">print_skip</span><span class="o">=</span><span class="mi">25</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Solve the model by iterating with the Bellman operator.</span>
 
 <span class="sd">    * os is an instance of OptimalSaving</span>
@@ -1014,7 +1107,7 @@ iteration, starting at the utility function.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ch6_49_0.png" src="_images/ch6_49_0.png" />
+<img alt="_images/983dcc1deec1c4dff298bf1a8f1171355b1d84a4251a2d6f217e71665f9cecd4.png" src="_images/983dcc1deec1c4dff298bf1a8f1171355b1d84a4251a2d6f217e71665f9cecd4.png" />
 </div>
 </div>
 <p>The next code block uses a more systematic method to find a good approximation
@@ -1039,16 +1132,16 @@ to the value function and then computes the associated greedy policy.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error at iteration 25 is 0.7349889566690351.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error at iteration 25 is 0.7349889566684098.
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error at iteration 50 is 0.2648838502200732.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error at iteration 50 is 0.26488385021986716.
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error at iteration 75 is 0.09546326991188181.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error at iteration 75 is 0.09546326991181076.
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error at iteration 100 is 0.0344046490568104.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error at iteration 100 is 0.03440464905678908.
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error at iteration 125 is 0.012399322564725423.
@@ -1057,19 +1150,19 @@ to the value function and then computes the associated greedy policy.</p>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error at iteration 150 is 0.004468675143598944.
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error at iteration 175 is 0.001610495850478344.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error at iteration 175 is 0.0016104958504712386.
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error at iteration 200 is 0.000580417417040735.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error at iteration 200 is 0.0005804174170478404.
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error at iteration 225 is 0.00020918053152030325.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error at iteration 225 is 0.00020918053151319782.
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Converged in 244 iterations.
 </pre></div>
 </div>
-<img alt="_images/ch6_51_10.png" src="_images/ch6_51_10.png" />
+<img alt="_images/44f8ab5b192a59ea7e1a2ca7a5484e24325994c054b40bdc9818aa730719cf4b.png" src="_images/44f8ab5b192a59ea7e1a2ca7a5484e24325994c054b40bdc9818aa730719cf4b.png" />
 </div>
 </div>
 <p>Now we use the look-ahead estimator to compute asset density dynamics under
@@ -1127,7 +1220,7 @@ the optimal policy.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ch6_53_0.png" src="_images/ch6_53_0.png" />
+<img alt="_images/db92b9650bbb0b601f50ca2b29e6cc59ebc224e857f574446b5eff17190095dd.png" src="_images/db92b9650bbb0b601f50ca2b29e6cc59ebc224e857f574446b5eff17190095dd.png" />
 </div>
 </div>
 <p>Finally we turn to policy function iteration, in order to solve exercise 6.19.</p>
@@ -1136,7 +1229,7 @@ the optimal policy.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">T_sigma</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">os</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Here os is an instance of OptimalSaving and v and sigma</span>
 <span class="sd">    are both arrays defined on the grid.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -1249,12 +1342,12 @@ for the optimal policy when using value function iteration, just as we hoped.</p
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Converged in 7 iterations.
 </pre></div>
 </div>
-<img alt="_images/ch6_62_1.png" src="_images/ch6_62_1.png" />
+<img alt="_images/41e8f9661441903f2734df156ccbf1cbbdb1e93f9dfa1bed2cb4046da1006d1f.png" src="_images/41e8f9661441903f2734df156ccbf1cbbdb1e93f9dfa1bed2cb4046da1006d1f.png" />
 </div>
 </div>
-</div>
-<div class="section" id="stochastic-speculative-price">
-<h2>Stochastic Speculative Price<a class="headerlink" href="#stochastic-speculative-price" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="stochastic-speculative-price">
+<h2>Stochastic Speculative Price<a class="headerlink" href="#stochastic-speculative-price" title="Permalink to this heading">#</a></h2>
 <p>Finally, to conclude code for this chapter, we turn to the commodity pricing
 model.</p>
 <p>The next code block computes figure 6.16 and hence solves exercise 6.26.</p>
@@ -1315,7 +1408,7 @@ model.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ch6_64_0.png" src="_images/ch6_64_0.png" />
+<img alt="_images/a6089ccb33a3fff86af7e9a8f61fe27ca0bb1947d14dd2ed9b6484dd37e60133.png" src="_images/a6089ccb33a3fff86af7e9a8f61fe27ca0bb1947d14dd2ed9b6484dd37e60133.png" />
 </div>
 </div>
 <p>Our final task for this chapter is to solve exercise 6.28, which involves
@@ -1371,7 +1464,7 @@ quantities.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ch6_66_0.png" src="_images/ch6_66_0.png" />
+<img alt="_images/dc650f98f67974575a7ab1d87c22126674b4de2a277a547ba5a0c374112c794d.png" src="_images/dc650f98f67974575a7ab1d87c22126674b4de2a277a547ba5a0c374112c794d.png" />
 </div>
 </div>
 <p>As claimed in the statement of the exercise, the two distributions line up
@@ -1380,8 +1473,8 @@ exactly.</p>
 average outcomes.</p>
 <p>If we change parameters to make storage more attractive, then we will see
 differences between the distributions.</p>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1395,7 +1488,7 @@ differences between the distributions.</p>
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true
@@ -1403,36 +1496,105 @@ differences between the distributions.</p>
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-        
-        <div class='prev-next-bottom'>
-            
-    <a class='left-prev' id="prev-link" href="ch5.html" title="previous page">Chapter 5 Code</a>
-    <a class='right-next' id="next-link" href="ch7.html" title="next page">Chapter 7 Code</a>
 
-        </div>
-        
-        </div>
-    </div>
-    <footer class="footer mt-5 mt-md-0">
-    <div class="container">
-      <p>
-        
-          By John Stachurski<br/>
-        
-            &copy; Copyright 2021.<br/>
-      </p>
-    </div>
-  </footer>
-</main>
-
-
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="ch5.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Chapter 5 Code</p>
       </div>
-    </div>
-  
-  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+    </a>
+    <a class="right-next"
+       href="ch7.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Chapter 7 Code</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#first-steps">First Steps</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optimal-savings">Optimal Savings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stochastic-speculative-price">Stochastic Speculative Price</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
+  <div class="footer-item">
+    
+<p class="component-author">
+By John Stachurski
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

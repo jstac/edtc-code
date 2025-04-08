@@ -314,7 +314,7 @@ axes = axes.flatten()
 for delta, ax in zip(deltas, axes):
     f = kde_factory(Y, delta)
     ax.plot(x_grid, f(x_grid))
-    ax.set_title(f"$\delta_n = {delta}$")
+    ax.set_title(rf"$\delta_n = {delta}$")
 
 plt.tight_layout()
 #plt.savefig("kdes.pdf")
@@ -496,8 +496,8 @@ class AD:
         return a * b
 
     def p(self, x, y):
-        z = y / (self.s * self.A(x) * self.f(x))
-        return self.phi(z) / z
+        z = self.s * self.A(x) * self.f(x)
+        return self.phi(y/z) / z
         
 ```
 
@@ -522,7 +522,7 @@ for sigma, g in zip(sigmas, greys):
             color=g, 
             lw=2, 
             alpha=0.6,
-            label=f'$\sigma={sigma}$')
+            label=rf'$\sigma={sigma}$')
 
 ax.set_xlabel('$k$')
 ax.legend()
