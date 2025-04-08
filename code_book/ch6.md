@@ -314,7 +314,7 @@ axes = axes.flatten()
 for delta, ax in zip(deltas, axes):
     f = kde_factory(Y, delta)
     ax.plot(x_grid, f(x_grid))
-    ax.set_title(f"$\delta_n = {delta}$")
+    ax.set_title(rf"$\delta_n = {delta}$")
 
 plt.tight_layout()
 #plt.savefig("kdes.pdf")
