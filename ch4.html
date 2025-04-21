@@ -658,7 +658,7 @@ stochastic kernel <span class="math notranslate nohighlight">\(p\)</span>.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/3c40076f5476b014ab2ed1a91b1c6456de7fefccfe1bf91bd8eb9b5221a6c1f3.png" src="_images/3c40076f5476b014ab2ed1a91b1c6456de7fefccfe1bf91bd8eb9b5221a6c1f3.png" />
+<img alt="_images/a0604e2bc755eb420b304c13168c21d460942fab177e10afce11f4278f6d8914.png" src="_images/a0604e2bc755eb420b304c13168c21d460942fab177e10afce11f4278f6d8914.png" />
 </div>
 </div>
 <p>Another option is to use existing code from QuantEcon.  This code is
@@ -675,7 +675,7 @@ JIT-compiled and very fast.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/b4e2664b24bad0fa380336fdb95a39268ee35819d1327e97a46719d21272f457.png" src="_images/b4e2664b24bad0fa380336fdb95a39268ee35819d1327e97a46719d21272f457.png" />
+<img alt="_images/401be57ecf6d661c20d77b1021a2f16379104e4239606792b2cf297b8b2c0ebf.png" src="_images/401be57ecf6d661c20d77b1021a2f16379104e4239606792b2cf297b8b2c0ebf.png" />
 </div>
 </div>
 <p>Here’s a solution to exercise 4.23.</p>
@@ -698,7 +698,7 @@ JIT-compiled and very fast.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.59725
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.59799
 </pre></div>
 </div>
 </div>
@@ -726,7 +726,7 @@ JIT-compiled and very fast.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.59879
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.59549
 </pre></div>
 </div>
 </div>
@@ -878,7 +878,7 @@ conditions become irrelevant after sufficient time has elapsed.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7046
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7021
 </pre></div>
 </div>
 </div>
@@ -900,9 +900,9 @@ conditions become irrelevant after sufficient time has elapsed.</p>
 
 <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">T_vals</span><span class="p">:</span>
     <span class="n">Q</span> <span class="o">=</span> <span class="n">Q</span> <span class="o">@</span> <span class="n">p_H</span>
-    <span class="n">discount</span> <span class="o">=</span> <span class="n">discount</span> <span class="o">*</span> <span class="n">rho</span>
     <span class="n">current_profits</span> <span class="o">+=</span> <span class="n">discount</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">inner</span><span class="p">(</span><span class="n">psi</span><span class="p">,</span> <span class="n">Q</span> <span class="o">@</span> <span class="n">h</span><span class="p">)</span>
     <span class="n">profits</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current_profits</span><span class="p">)</span>
+    <span class="n">discount</span> <span class="o">=</span> <span class="n">discount</span> <span class="o">*</span> <span class="n">rho</span>
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">profits</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;profits&#39;</span><span class="p">)</span>
@@ -915,7 +915,7 @@ conditions become irrelevant after sufficient time has elapsed.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/a40264713f588d598602e36e5430fe3a4304c14c9984d3f93c1fdf3b65d2443a.png" src="_images/a40264713f588d598602e36e5430fe3a4304c14c9984d3f93c1fdf3b65d2443a.png" />
+<img alt="_images/4a449732554f3affa8bf3dc7d352d9c60b3fcc413167109965a4568de9c0fae4.png" src="_images/4a449732554f3affa8bf3dc7d352d9c60b3fcc413167109965a4568de9c0fae4.png" />
 </div>
 </div>
 <p>Here’s figure 4.11.</p>
@@ -1088,7 +1088,7 @@ conditions, we get very similar results.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1.23939, 5.99175, 40.88828]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1.23226, 6.17647, 40.34466]
 </pre></div>
 </div>
 </div>
@@ -1222,7 +1222,7 @@ follows.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.810678
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.811182
 </pre></div>
 </div>
 </div>
@@ -1254,7 +1254,7 @@ time series, we can calculate as follows.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>785.385
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>786.056
 </pre></div>
 </div>
 </div>
