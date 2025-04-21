@@ -480,9 +480,9 @@ Q = np.identity(3)
 
 for t in T_vals:
     Q = Q @ p_H
-    discount = discount * rho
     current_profits += discount * np.inner(psi, Q @ h)
     profits.append(current_profits)
+    discount = discount * rho
 
 fig, ax = plt.subplots()
 ax.plot(profits, label='profits')
